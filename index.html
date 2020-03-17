@@ -10,7 +10,7 @@
     body {
       font-family: 'Ropa Sans', sans-serif;
       color: #333;
-      max-width: 640px;
+      max-width: 1200px;
       background: #f4f6f9;
       margin: 0 auto;
       position: relative;
@@ -71,7 +71,8 @@
     <canvas id="canvas" hidden></canvas>
   </div>
   <div id="footer">
-    Copyright © WG ABSENSI 2020
+    <div id="nip_footer" style="font-size: 28;padding-bottom: 20px; color: #2D99FF;"></div>
+    <div style="font-size: 20;">Copyright © WG ABSENSI 2020</div>
   </div>
   <div id="direct">
 
@@ -96,6 +97,12 @@
     new URL(location.href).searchParams.get('nip')
     const params = new URL(location.href).searchParams;
     const nip = params.get('nip');
+    if (nip == null) {
+    document.getElementById("nip_footer").innerHTML = "NIP - Tidak Ditemukan";
+    } else {
+    
+      document.getElementById("nip_footer").innerHTML = "NIP - "+nip;
+    }
     // console.log('pathArray[1] :', pathArray[1]);
     // console.log('nip :', nip);
 
@@ -111,7 +118,7 @@
     }
 
     // Use facingMode: environment to attemt to get the front camera on phones
-    navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } }).then(function(stream) {
+    navigator.mediaDevices.getUserMedia({ video: { facingMode: "user" } }).then(function(stream) {
       video.srcObject = stream;
       video.setAttribute("playsinline", true); // required to tell iOS safari we don't want fullscreen
       video.play();
@@ -153,7 +160,9 @@
               // $('#direct').append(html);
               // $('#to span').trigger('click');
               window.location.href = 'http://webjob.wikagedung.co.id/wg_absen/Webscan/scanmeqr/'+nip+'/'+splitIsi[0];
-             }, 1000);
+              // console.log('cek :Detik');
+             }, 10000);
+            //  console.log('cek :Detik10000');
             // window.location.href = 'http://webjob.wikagedung.co.id/wg_absen/Webscan/scanmeqr/'+nip+'/'+splitIsi[0];
           }
   
