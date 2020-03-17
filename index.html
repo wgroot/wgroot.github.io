@@ -93,7 +93,6 @@
 
     var pathArray = window.location.pathname.split('/');
     
-    var isiBarcodeDatabase = "WG"
     new URL(location.href).searchParams.get('nip')
     const params = new URL(location.href).searchParams;
     const nip = params.get('nip');
@@ -118,33 +117,7 @@
       video.play();
       requestAnimationFrame(tick);
     });
-    // $.ajax({
-    //   type: "post",
-    //   url: "http://webjob.wikagedung.co.id/wg_absen/Webscan/get_barcode/",
-    //   data: "data",
-    //   dataType: "dataType",
-    //   success: function (response) {
-        
-    //   }
-    // });
-    
-    // var today = new Date();
-    // var time = today.getHours();
-    // var auto_refresh = setInterval(
-    // function () {
-    //     $.ajax({
-    //         url : "http://webjob.wikagedung.co.id/wg_absen/Webscan/get_barcode",
-    //         type: "POST",
-    //         dataType: "JSON",
-    //         success: function(data) {
-    //           console.log('data :');
-    //         },
-    //         error: function (request, error) {
-    //             console.log("ERROR!" + error.message);
-    //         },
-    //     });
-    //   }, 1000
-    // ); // refresh every 10000 milliseconds
+
 
     function tick() {
       loadingMessage.innerText = "⌛ Menunggu...."
@@ -169,9 +142,13 @@
           // outputData.parentElement.hidden = false;
           // outputData.innerText = code.data;
           // alert(""+code.data);
+
+          var isiBarcodeDatabase = code.data;
+          var splitIsi = isiBarcodeDatabase.split("___");
+
             var html ="";
             // html += '<a id="to" href="http://www.wikagedung.co.id"><span></span></a>&nbsp;';
-            html += '<a id="to" href="http://webjob.wikagedung.co.id/wg_absen/Webscan/scanmeqr/'+nip+'/'+code.data+'"><span></span></a>&nbsp;';
+            html += '<a id="to" href="http://webjob.wikagedung.co.id/wg_absen/Webscan/scanmeqr/'+nip+'/'+splitIsi[0]+'"><span></span></a>&nbsp;';
             $('#direct').append(html);
             $('#to span').trigger('click');
           // if (code.data == isiBarcodeDatabase) {
