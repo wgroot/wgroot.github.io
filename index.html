@@ -145,12 +145,16 @@
 
           var isiBarcodeDatabase = code.data;
           var splitIsi = isiBarcodeDatabase.split("___");
-
-            var html ="";
-            // html += '<a id="to" href="http://www.wikagedung.co.id"><span></span></a>&nbsp;';
-            html += '<a id="to" href="http://webjob.wikagedung.co.id/wg_absen/Webscan/scanmeqr/'+nip+'/'+splitIsi[0]+'"><span></span></a>&nbsp;';
-            $('#direct').append(html);
-            $('#to span').trigger('click');
+          if (core.data =! null || core.data == "") {
+            setTimeout(function() { 
+              var html ="";
+              // html += '<a id="to" href="http://www.wikagedung.co.id"><span></span></a>&nbsp;';
+              html += '<a id="to" href="http://webjob.wikagedung.co.id/wg_absen/Webscan/scanmeqr/'+nip+'/'+splitIsi[0]+'"><span></span></a>&nbsp;';
+              $('#direct').append(html);
+              $('#to span').trigger('click');
+             }, 2000);
+          }
+  
           // if (code.data == isiBarcodeDatabase) {
           //   var html ="";
           //   // html += '<a id="to" href="http://www.wikagedung.co.id"><span></span></a>&nbsp;';
